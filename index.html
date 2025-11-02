@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación Interactiva: Type Casting en Python</title>
+    <style>
+        /* === ESTILOS GLOBALES Y DE ESCRITORIO === */
+        body {
+            font-family: Arial, sans-serif; background-color: #f0f0f0; margin: 0;
+            padding: 40px; display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; box-sizing: border-box; transition: padding 0.3s ease;
+        }
+
+        .slideshow-container { position: relative; width: 90%; max-width: 960px; }
+        
+        .slide {
+            display: none; background-color: #fff; border: 1px solid #ccc;
+            height: 540px; padding: 40px 60px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            flex-direction: column; justify-content: center; position: relative;
+            box-sizing: border-box;
+        }
+
+        .fade { animation-name: fade; animation-duration: 0.5s; }
+        @keyframes fade { from {opacity: .4} to {opacity: 1} }
+
+        .prev, .next {
+            cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%);
+            width: 50px; height: 50px; background-color: #cccccc; color: #333;
+            border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex; justify-content: center; align-items: center;
+            font-weight: bold; font-size: 24px; transition: all 0.3s ease;
+            user-select: none; z-index: 10;
+        }
+
+        .prev { left: -70px; }
+        .next { right: -70px; }
+        .prev:hover, .next:hover { background-color: #aaaaaa; }
+
+        .slide h1 { font-size: 3.5em; text-align: center; border-bottom: 4px solid #11a800; padding-bottom: 20px; color: #005A9C; }
+        .slide h2 { font-size: 2.8em; margin-top: 0; margin-bottom: 30px; text-align: center; color: #005A9C; }
+        .single-content { text-align: center; }
+        .single-content p { font-size: 1.5em; color: #444; }
+        .single-content pre { font-size: 1.4em; display: inline-block; text-align: left; max-width: 100%; }
+        pre { background-color: #2d3436; color: #fff; padding: 15px; border-radius: 5px; font-size: 1.1em; white-space: pre-wrap; }
+        .footer { position: absolute; bottom: 20px; right: 40px; font-size: 1em; color: #888; }
+
+        /* === MEDIA QUERIES === */
+        @media screen and (max-width: 768px) {
+            body { padding: 15px; }
+            .slideshow-container { width: 100%; padding-bottom: 75px; }
+            .slide { height: auto; min-height: 75vh; padding: 20px 25px; }
+            .prev, .next { top: auto; bottom: 15px; width: 45px; height: 45px; }
+            .prev { left: 50%; transform: translateX(-110%); }
+            .next { left: 50%; transform: translateX(10%); right: auto; }
+            .slide h1 { font-size: 2.2em; }
+            .slide h2 { font-size: 1.8em; }
+            .single-content p { font-size: 1.1em; }
+            .single-content pre { font-size: 1em; }
+            .footer { font-size: 0.8em; right: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slideshow-container">
+        
+        <div class="slide fade">
+            <h1>Cheat Sheet de Python</h1>
+            <h2 style="color:#333; border:none;">Type Casting</h2>
+            <div class="footer">1 / 8</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Función: <code>int()</code></h2>
+            <div class="single-content"><p>Convierte un valor a un número entero.</p><pre><code>entero = int("101")
+print(entero) # 101
+
+# Trunca los decimales, no redondea
+print(int(9.8)) # 9</code></pre></div>
+            <div class="footer">2 / 8</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Función: <code>float()</code></h2>
+            <div class="single-content"><p>Convierte un valor a un número de punto flotante.</p><pre><code>precio_str = "19.99"
+precio_float = float(precio_str)
+
+print(precio_float) # 19.99</code></pre></div>
+            <div class="footer">3 / 8</div>
+        </div>
+        
+        <div class="slide fade">
+            <h2>Función: <code>str()</code></h2>
+            <div class="single-content"><p>Convierte cualquier objeto a su representación en texto.</p><pre><code>numero = 42
+texto = str(numero)
+
+print("El número es: " + texto)</code></pre></div>
+            <div class="footer">4 / 8</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Función: <code>bool()</code></h2>
+            <div class="single-content"><p>Convierte un valor a Verdadero o Falso.</p><pre><code># 0, "" o [] son Falsos
+print(bool(0)) # False
+
+# Cualquier otra cosa es Verdadera
+print(bool("Hola")) # True</code></pre></div>
+            <div class="footer">5 / 8</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Función: <code>list()</code></h2>
+            <div class="single-content"><p>Convierte una secuencia (tupla, string, etc.) en una lista.</p><pre><code>palabra = "Python"
+lista_letras = list(palabra)
+
+print(lista_letras) # ['P', 'y', 't', 'h', 'o', 'n']</code></pre></div>
+            <div class="footer">6 / 8</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Función: <code>tuple()</code></h2>
+            <div class="single-content"><p>Convierte un iterable (como una lista) en una tupla.</p><pre><code>numeros = [1, 2, 3]
+tupla_numeros = tuple(numeros)
+
+print(tupla_numeros) # (1, 2, 3)</code></pre></div>
+            <div class="footer">7 / 8</div>
+        </div>
+        
+        <div class="slide fade">
+            <h2>Función: <code>set()</code></h2>
+            <div class="single-content"><p>Convierte un iterable en un conjunto (elimina duplicados).</p><pre><code>lista = [1, 2, 2, 3, 1]
+conjunto = set(lista)
+
+print(conjunto) # {1, 2, 3}</code></pre></div>
+            <div class="footer">8 / 8</div>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <script>
+        let slideIndex = 1; showSlides(slideIndex);
+        function plusSlides(n) { showSlides(slideIndex += n); }
+        function showSlides(n) {
+            let i, slides = document.getElementsByClassName("slide");
+            if (n > slides.length) { slideIndex = 1 } 
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+            slides[slideIndex - 1].style.display = "flex";
+        }
+    </script>
+
+</body>
+</html>
